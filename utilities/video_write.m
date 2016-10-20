@@ -35,6 +35,11 @@ end
 
 open(vh);
 
+% convert format (can not write uint16)
+if isa(video, 'uint16') || isa(video, 'single')
+    video = im2uint8(video);
+end
+
 % write frames
 if ndims(video) == 4
     for i = 1:size(video, 4)
